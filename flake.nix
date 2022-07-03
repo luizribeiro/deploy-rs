@@ -125,6 +125,9 @@
           };
         };
       };
+      zstd = prev.zstd.overrideAttrs (old: {
+        LDFLAGS = final.lib.optionalString final.stdenv.hostPlatform.isRiscV "-latomic";
+      });
     };
   } //
     utils.lib.eachSystem (
